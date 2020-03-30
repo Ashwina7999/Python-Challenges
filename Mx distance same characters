@@ -1,0 +1,80 @@
+    The program must accept a string S as the input. The program must print the character
+along with its maximum distance to reach the same character as the output. If two or more
+characters have the same maximum distance then the program must print the first occurring
+character and its distance as the output. If there are no such characters in the string "S"
+then the program must print "-1" as the output
+
+BOUNDARY CONDTIONS:
+3<=Length of the S <=10000
+
+INPUT FORMAT:
+The first line contains "S"
+
+OUTPUT FORMAT:
+The first line contains the character along with the maximum distance.
+
+EXAMPLE INPUT/OUTPUT 1:
+INPUT:  
+hellomadam
+
+OUTPUT:
+m4
+
+EXPLANATIONS:
+In the string hellomadam, from the character "l", the distance to reach the same character "l" is "one"
+In the string hello Madam, from the character "m",the distance to reach the same character "m" is "four"
+In the string hellomadam, from the character "a", the distance to reach the same character "a" is "two"
+Hence, the output is m4
+
+
+PROGRAM 1:
+s="hellomadam"
+list1=[]
+d={}
+for i in range(len(s)):
+    for j in range(i+1,len(s)):
+        if(s[i]==s[j]):
+            d[s[i:j+1]]=len(s[i:j+1])
+if(d=={}):
+    print("-1")
+else:    
+    for i,j in d.items():
+        if(j==max(d.values())):
+            print("{}{}".format(i[0],j-1))
+            break
+            
+            
+PROGRAM 2:
+s="shy"
+list1=[]
+d={}
+for i in s:
+    s1=0
+    for j in range(s.find(i)+1,s.rfind(i)+1):
+        s1+=1
+    d[i]=s1   
+if(max(d.values())==0):
+    print("-1")
+else:    
+    for i,j in d.items():
+        if(j==max(d.values())):
+            print("{}{}".format(i,j))
+            break
+            
+            
+'''         
+TEST CASE 1:
+INPUT:
+hellomadam
+
+OUTPUT:
+m4
+
+
+TEST CASE 2:
+INPUT:
+shy
+
+OUTPUT:
+-1
+'''
